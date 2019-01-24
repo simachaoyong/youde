@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // <template>
 //   <div id="app">
 //     <Xsearch />
@@ -174,3 +175,24 @@
 //   width: 100%;
 // }
 // </style>
+=======
+<template>
+  <div id="app">
+    <!-- 路由匹配到组件，渲染的地方 -->
+    <router-view></router-view>
+    <Xfooter></Xfooter>
+  </div>
+</template>
+
+<script>
+import Xfooter from './components/Xfooter.vue'
+export default {
+  components: {
+    Xfooter
+  }
+}
+</script>
+<style>
+
+</style>
+>>>>>>> 05a801f21bd623d5e057d706c29982f571c44173

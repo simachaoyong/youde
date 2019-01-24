@@ -5,7 +5,7 @@
       <span>为您推荐</span>
     </div>
     <div class="recommonCont">
-      <div class="recommendList" v-for="(item,index) of data" :key="index">
+      <div class="recommendList" v-for="(item,index) of data" :key="index" @click="goLink('details',item.id)">
         <div class="inner">
           <div class="recommendListImg">
             <img
@@ -32,11 +32,18 @@ export default {
       data: []
     };
   },
+  methods: {
+    goLink(link,id){
+			this.$router.push({name:link,query: {id}});
+		}
+  },
   created() {
     this.$axios
       .get("https://m.youde.com/youde/f/app/s_10020/goods/recommend/list?pageIndex=1")
       .then(res => {
         this.data = res.data.data;
+      }).catch((err)=>{
+        console.log(err);
       });
   }
 };
