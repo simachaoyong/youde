@@ -6,12 +6,7 @@ import List from '../pages/List.vue'
 import Home from '../pages/Home.vue'
 import Mine from '../pages/Mine.vue'
 import Cart from '../pages/Cart.vue'
-<<<<<<< HEAD
-import Search from '../pages/Search.vue'
-// import App from '../App.vue'
-=======
 import Detail from '../pages/Details.vue'
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
 
 Vue.use(VueRouter)
 const routes = [
@@ -49,28 +44,9 @@ const routes = [
         name: 'details',
         component: Detail
     },
-<<<<<<< HEAD
-    {
-        path: '/cart',
-        name: 'cart',
-        component: Cart
-    },
-    {
-        path: '/',
-        name: 'home',
-        component: Home
-    },
-    {
-        path: '/search',
-        name: 'search',
-        component: Search
-    }
-]
-=======
     // 路由重定向
     { path: '/', redirect: { name: 'home' }}
 ];
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
 const router = new VueRouter({
     routes
 })

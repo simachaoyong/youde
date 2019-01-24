@@ -1,22 +1,6 @@
 <template>
   <footer class="footer">
     <div class="floor-container">
-<<<<<<< HEAD
-      <ul class="tab4">
-        <a  @click="goTo('home')" class="router-link-active">
-          <span class="bar-img">
-            <i class="icon iconfont icon-shouye active"></i>
-          </span>
-          <span class="cart-index active">首页</span>
-        </a>
-        <a  @click="goTo('list')">
-          <span class="bar-img">
-            <i class="icon iconfont icon-fenlei"></i>
-          </span>
-          <span class="cart-index">分类</span>
-        </a>
-        <a  @click="goTo('cart')">
-=======
       <div class="tab4">
         <a  @click="goLink('home','a')" :class="{'router-link-active':show=='a'}">
           <span class="bar-img">
@@ -31,22 +15,10 @@
           <span :class="{'cart-index':true,'active':show=='b'}">分类</span>
         </a>
         <a  @click="goLink('cart','c')" :class="{'router-link-active':show=='c'}">
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
           <span class="bar-img relative">
             <em class="shopcar_num">3</em>
             <i class="icon iconfont icon-jiarugouwuche"></i>
           </span>
-<<<<<<< HEAD
-          <span class="cart-index">购物车</span>
-        </a>
-        <a  @click="goTo('mine')">
-          <span class="bar-img">
-            <i class="icon iconfont icon-weibiaoti2fuzhi12"></i>
-          </span>
-          <span class="cart-index">我的</span>
-        </a>
-      </ul>
-=======
           <span :class="{'cart-index':true,'active':show=='c'}">购物车</span>
         </a>
         <a  @click="goLink('mine','d')" :class="{'router-link-active':show=='d'}">
@@ -56,19 +28,12 @@
           <span :class="{'cart-index':true,'active':show=='d'}">我的</span>
         </a>
       </div>
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-  methods:{
-    goTo(name){
-      this.$router.push({name : name })
-    }
-=======
   data() {
     return {
       show:'a',
@@ -79,7 +44,6 @@ export default {
       this.$router.push({name:link});
       this.show=n;
     },
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
   }
 };
 </script>
@@ -104,11 +68,7 @@ export default {
 .footer .floor-container .tab4{
 	display:flex;
 }
-<<<<<<< HEAD
-.footer .floor-container ul a{
-=======
 .footer .floor-container .tab4 a{
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
 	height:48px;
 	padding-top:2px;
 	flex:1;

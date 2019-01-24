@@ -12,12 +12,8 @@
     "serve": "^10.1.1",
     "swiper": "^4.4.6",
     "vue": "^2.5.21",
-<<<<<<< HEAD
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"
-=======
-    "vue-router": "^3.0.2"
->>>>>>> 05a801f21bd623d5e057d706c29982f571c44173
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
