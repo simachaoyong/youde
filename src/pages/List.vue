@@ -1,20 +1,17 @@
 <template>
   <div id="app">
-    <Xsearch></Xsearch>
+    <XsearchList></XsearchList>
     <Xbody></Xbody>
-    <Xfooter></Xfooter>
   </div>
 </template>
 
 <script>
-import Xsearch from "../components/Xsearch.vue";
-import Xfooter from "../components/Xfooter.vue";
+import XsearchList from "../components/Xsearch_list.vue";
 import Xbody from "../components/Xbody.vue";
 export default {
   components: {
-    Xsearch,
+    XsearchList,
     Xbody,
-    Xfooter
   }
 };
 </script>

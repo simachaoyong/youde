@@ -1,79 +1,50 @@
 <template>
   <footer class="footer">
     <div class="floor-container">
-      <ul class="tab4">
-<<<<<<< HEAD
-        <a  @click="goHome" class="router-link-active">
-=======
-        <li class="router-link-active">
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+      <div class="tab4">
+        <a  @click="goLink('home','a')" :class="{'router-link-active':show=='a'}">
           <span class="bar-img">
             <i class="icon iconfont icon-shouye active"></i>
           </span>
-          <span class="cart-index active">首页</span>
-<<<<<<< HEAD
+          <span :class="{'cart-index':true,'active':show=='a'}">首页</span>
         </a>
-        <a  @click="goList">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goLink('list','b')" :class="{'router-link-active':show=='b'}">
           <span class="bar-img">
             <i class="icon iconfont icon-fenlei"></i>
           </span>
-          <span class="cart-index">分类</span>
-<<<<<<< HEAD
+          <span :class="{'cart-index':true,'active':show=='b'}">分类</span>
         </a>
-        <a  @click="goCart">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goLink('cart','c')" :class="{'router-link-active':show=='c'}">
           <span class="bar-img relative">
             <em class="shopcar_num">3</em>
             <i class="icon iconfont icon-jiarugouwuche"></i>
           </span>
-          <span class="cart-index">购物车</span>
-<<<<<<< HEAD
+          <span :class="{'cart-index':true,'active':show=='c'}">购物车</span>
         </a>
-        <a  @click="goMine">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goLink('mine','d')" :class="{'router-link-active':show=='d'}">
           <span class="bar-img">
             <i class="icon iconfont icon-weibiaoti2fuzhi12"></i>
           </span>
-          <span class="cart-index">我的</span>
-<<<<<<< HEAD
+          <span :class="{'cart-index':true,'active':show=='d'}">我的</span>
         </a>
-=======
-        </li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
-      </ul>
+      </div>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-  methods:{
-    goHome(){
-      this.$router.push({name:'home' })
-    },
-     goList(){
-      this.$router.push({name:'list' })
-    },goCart(){
-      this.$router.push({name:'cart' })
-    },
-     goMine(){
-      this.$router.push({name:'mine' })
+  data() {
+    return {
+      show:'a',
     }
+  },
+  methods:{
+    goLink(link,n){
+      this.$router.push({name:link});
+      this.show=n;
+    },
   }
-=======
-  name: "app"
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
 };
 </script>
 
@@ -93,14 +64,10 @@ export default {
     height: 100%;
     background-color: #fff;
 }
-.footer .floor-container ul{
+.footer .floor-container .tab4{
 	display:flex;
 }
-<<<<<<< HEAD
-.footer .floor-container ul a{
-=======
-.footer .floor-container ul li{
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+.footer .floor-container .tab4 a{
 	height:48px;
 	padding-top:2px;
 	flex:1;

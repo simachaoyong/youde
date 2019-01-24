@@ -1,6 +1,6 @@
 <template>
 	<div class="ximg">
-		<a href="#" v-for="(item,index) of data" :key="index">
+		<a href="javacript:void(0);" @click="goLink('details',item.jumpVal)" v-for="(item,index) of data" :key="index">
 			<img :src="JSON.parse(item.banner).path"/>
 		</a>
 	</div>
@@ -10,6 +10,11 @@ export default {
 	data() {
 		return {
 			data:[]
+		}
+	},
+	methods: {
+		goLink(link,id){
+			this.$router.push({name:link,query: {id}});
 		}
 	},
 	created() {
