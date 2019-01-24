@@ -8,6 +8,7 @@ import List from '../pages/List.vue'
 import Home from '../pages/Home.vue'
 import Mine from '../pages/Mine.vue'
 import Cart from '../pages/Cart.vue'
+import Search from '../pages/Search.vue'
 // import App from '../App.vue'
 
 Vue.use(VueRouter)
@@ -37,6 +38,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: Search
     }
 ]
 const router = new VueRouter({

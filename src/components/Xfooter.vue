@@ -2,54 +2,31 @@
   <footer class="footer">
     <div class="floor-container">
       <ul class="tab4">
-<<<<<<< HEAD
-        <a  @click="goHome" class="router-link-active">
-=======
-        <li class="router-link-active">
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goTo('home')" class="router-link-active">
           <span class="bar-img">
             <i class="icon iconfont icon-shouye active"></i>
           </span>
           <span class="cart-index active">首页</span>
-<<<<<<< HEAD
         </a>
-        <a  @click="goList">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goTo('list')">
           <span class="bar-img">
             <i class="icon iconfont icon-fenlei"></i>
           </span>
           <span class="cart-index">分类</span>
-<<<<<<< HEAD
         </a>
-        <a  @click="goCart">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goTo('cart')">
           <span class="bar-img relative">
             <em class="shopcar_num">3</em>
             <i class="icon iconfont icon-jiarugouwuche"></i>
           </span>
           <span class="cart-index">购物车</span>
-<<<<<<< HEAD
         </a>
-        <a  @click="goMine">
-=======
-        </li>
-        <li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+        <a  @click="goTo('mine')">
           <span class="bar-img">
             <i class="icon iconfont icon-weibiaoti2fuzhi12"></i>
           </span>
           <span class="cart-index">我的</span>
-<<<<<<< HEAD
         </a>
-=======
-        </li>
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
       </ul>
     </div>
   </footer>
@@ -57,29 +34,18 @@
 
 <script>
 export default {
-<<<<<<< HEAD
   methods:{
-    goHome(){
-      this.$router.push({name:'home' })
-    },
-     goList(){
-      this.$router.push({name:'list' })
-    },goCart(){
-      this.$router.push({name:'cart' })
-    },
-     goMine(){
-      this.$router.push({name:'mine' })
+    goTo(name){
+      this.$router.push({name : name })
     }
   }
-=======
-  name: "app"
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
 };
 </script>
 
 <style scoped>
 .footer{
 	position:fixed;
+  z-index: 2000;
 	bottom:0;
 	left:0;
 	background-color:#fff;
@@ -96,11 +62,7 @@ export default {
 .footer .floor-container ul{
 	display:flex;
 }
-<<<<<<< HEAD
 .footer .floor-container ul a{
-=======
-.footer .floor-container ul li{
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
 	height:48px;
 	padding-top:2px;
 	flex:1;

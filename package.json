@@ -9,15 +9,11 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "serve": "^10.1.1",
     "swiper": "^4.4.6",
     "vue": "^2.5.21",
-    "vue-router": "^3.0.2"
-=======
-    "swiper": "^4.4.6",
-    "vue": "^2.5.21"
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",

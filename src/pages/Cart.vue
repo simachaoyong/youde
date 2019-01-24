@@ -1,12 +1,15 @@
 <template>
-  <div>购物车
+  <div>
+      <Zcart></Zcart>
       <Xfooter></Xfooter>
   </div>
 </template>
 <script>
-import Xfooter from "../components/Xfooter.vue";
+import Zcart from "../components/Zcart.vue"
+import Xfooter from "../components/Xfooter.vue"
 export default {
     components:{
+        Zcart,
         Xfooter
     }
 }

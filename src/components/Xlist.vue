@@ -1,15 +1,4 @@
 <template>
-<<<<<<< HEAD
-	<div>
-		分类
-	</div>
-</template>
-<script>
-
-</script>
-<style scoped>
-	
-=======
   <div class="xlist">
     <div class="recommendTitle">
       <img src="../assets/images/tj.png" alt>
@@ -104,5 +93,4 @@ export default {
   font-size: 16px;
   color: red;
 }
->>>>>>> 3f117b0a14a06f7b8f1918900ea4ee4de32c19cd
 </style>

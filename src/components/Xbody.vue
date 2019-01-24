@@ -1,121 +1,178 @@
+
 <template>
-  <div class="bar">
-		<div class="left-bar">
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">中西成药</a>
-				<a href="javascript:;">养生中药</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-				<a href="javascript:;">医疗健康器材</a>
-		</div>
-		<div class="right-bar">
-				<div class="right-bar-name">
-					 <p><span>|</span>感冒类</p>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-					<div class="right-bar-list">
-							<div class="right-bar-list-img">
-								<img src="../assets/images/84.png" alt="">
-								<p>预防感冒</p>
-							</div>
-					</div>
-				</div>
-		</div>
-	</div>
+  <div id="tab">
+    <div class="tab-bar clearfix">
+      <!-- 左边区域 -->
+      <div class="Left clearfix">
+        <a
+          href="javascript:;"
+          @click="tab(index)"
+          v-for="(item,index) in Datas"
+          :key="item.id"
+          :class="{active : index===curId}"
+        >{{item.name}}</a>
+      </div>
+      <!-- 右边区域 -->
+      <div class="tab-con" v-for="(content,index) in items" :key="content.id" v-show="index==curId">
+        <div v-for="leaf in content.leaf" :key="leaf.id">
+          <p class="name">
+            <span>|</span>
+            {{leaf.name}}
+          </p>
+
+          <div class="item-wrapper clearfix">
+            <div
+              class="goods-item"
+              v-for="con in leaf.leaf"
+              :key="con.id"
+              @click="goto('cart',con.id)"
+            >
+              <img :src="con.cover" class="goods-img">
+              <p class="goods-name">{{con.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-export default{
-	
-}
+export default {
+  data() {
+    return {
+      curId: 0,
+      items: [],
+      Datas: [],
+      canshu: []
+    }
+  },
+  methods: {
+    tab(index) {
+      this.curId = index;
+      this.a = this.curId;
+      console.log(this.curId);
+    },
+    goto(name, index) {
+      this.$router.push({
+        name: name,
+        // 路由传参
+        query: { thridCategoryId: index }
+      });
+    }
+  },
+  created() {
+    this.$axios
+      .get("https://m.youde.com/youde/f/app/s_10020/loadCategory")
+      .then(res => {
+        //s
+        let data = res.data.data;
+        this.items = data;
+        // console.log(res.data.data);
+        // console.log(this.items);
+        // console.log(res.data.data[0]);
+        // console.log(res.data.data[0].leaf);
+        var datas = [];
+        for (let i = 0; i < this.items.length; i++) {
+          var json = {};
+          json["id"] = i;
+          json["name"] = this.items[i].name;
+          datas.push(json);
+          // console.log(json);
+        }
+        // console.log(datas);
+        this.Datas = datas;
+      })
+      .catch(() => {
+        // Indicator.close();
+      });
+  },
+  computed: {
+
+  }
+};
 </script>
 <style scoped>
-.bar{
-	/* background-color: #fff; */
-	margin-top:50px;
-	flex-direction: column;
-	width: 100%;
+#tab {
+  width: 100%;
+  flex-direction: column;
 }
-.bar div{
-		float:left;
+#tab .tab_header {
+  width: 100%;
+  height: 47px;
 }
-.bar .left-bar{
- background-color: #e4e5e7;
- /* text-indent: 5px; */
-	width: 30%;
-	text-align: center;
+.tab-bar {
+  display: flex;
+  justify-content: space-between;
 }
-.bar .left-bar a{
-	display: inline-block;
-	font-size: 13px;
-	height:43px;
-	line-height: 43px;	
+.tab-bar .Left {
+  display: flex;
+  flex-direction: column;
+  width: 90px;
+  height: 477px;
+  background-color: #e4e5e7;
+  margin-top:48px;
+  /* position: fixed;
+  top: 0.96rem;
+  bottom: 50px;
+  left: 0; */
+  overflow: hidden;
 }
-.bar .right-bar {
-		width: 70%;
-		display:flex;
+.tab-bar .Left a {
+  display: block;
+  font-size: 0.8rem;
+  width: 90px;
+  height: 43px;
+  text-align: center;
+  line-height: 43.66px;
+  border-bottom: 1px solid #e4e5e7;
+  text-decoration: none;
+  color: dimgray;
 }
-.bar .right-bar .right-bar-name{
-	margin-left:10px;
-	font-size: 14px;
-
+.tab-con {
+  height: 477px;
+  flex: 1;
+  overflow: auto;
+  margin-top:50px;
+  padding-left: 10px;
 }
-.bar .right-bar .right-bar-name>p{
-	height: 40px;
-	line-height: 40px;
-	font-size: 13px;
-} 
-.bar .right-bar .right-bar-list{
-		/* display:flex; */
-		text-align: center;
-		width: 48%;
-		/* margin-right: 5px;		 */
+.tab-con span {
+  display: inline-block;
+  width: 5px;
+  margin-right: 3px;
+  color: #000;
 }
-.bar .right-bar .right-bar-list .right-bar-list-img{
-		float:left;
-		width: 100%;
-		border:1px solid #e4e5e7;
-		padding-top: 5px;
-	
+.tab-con .name {
+  margin: 8.5px 0;
+  width: 100%;
+  height: 17px;
 }
-.bar .right-bar .right-bar-list .right-bar-list-img img{
-		width:70px;
+.tab-con .item-wrapper .goods-item {
+  width: 48%;
+  height: 91px;
+  margin: 8.5px 2px;
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid beige;
+  text-align: center;
 }
-.bar .right-bar .right-bar-list .right-bar-list-img p{
-	height: 30px;
-	line-height: 30px;
-	width: 100%;
+.tab-con .item-wrapper .goods-img {
+  width: 70px;
+  height: 70px;
+}
+.tab-con .item-wrapper .goods-name {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.tab-bar .active {
+  background-color: #fff;
 }
 </style>
