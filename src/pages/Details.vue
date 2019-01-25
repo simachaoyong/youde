@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <header class="header-container">
       <div class="f_logo" @click="goTo()">
-        <i class="iconfont icon-jiantou-copy"></i>
+        <i class="iconfont icon-jiantou2"></i>
       </div>
       <div class="title-box">
         <div class="active active1 titleTab">

@@ -2,7 +2,7 @@
   <div class="msg">
     <div class="top">
       <div class="jiantou">
-        <i class="iconfont icon-jiantou-copy"></i>
+        <i @click="prev" class="iconfont icon-jiantou2"></i>
         <span style="color: rgb(88, 89, 89)">我的</span>
       </div>
     </div>
@@ -25,12 +25,21 @@
       <img src="../assets/images/headImg.png" alt>
     </div>
     <div class="tologin">
-      <span>点我去登录</span>
+      <span @click="goTo('login')">点我去登录</span>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods:{
+    goTo(name){
+      this.$router.push({name:name})
+    },
+    prev(){
+      this.$router.go(-1)
+    }
+  }
+};
 </script>
 <style scoped>
 .msg {
@@ -64,7 +73,6 @@ export default {};
   height: 180px;
   width: 100%;
   overflow: hidden;
-  /* position: relative; */
 }
 .nick img {
   height: 300px;
@@ -76,7 +84,6 @@ export default {};
 }
 .nick .userInfoCont > div {
   height: 56px;
-  /* line-height: 56px; */
   float: left;
 }
 .nick .userInfoCont .userInfo {
@@ -95,7 +102,6 @@ export default {};
   margin-right: 15px;
 }
 .nick .userInfoCont .signIn {
-  /* line-height: 56px; */
   padding-top: 15px;
   color: #fff;
 }
@@ -116,7 +122,6 @@ export default {};
   font-size: 10px;
   text-align: center;
   border-radius: 50%;
-  /* height: 10px; */
 }
 .msg .headImg {
   width: 140px;

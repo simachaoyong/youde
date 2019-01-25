@@ -1,8 +1,8 @@
 <template>
   <header class="header">
     <div class="top">
-      <div @click="prve" class="jiantou">
-        <i class="iconfont icon-jiantou-copy"></i>
+      <div @click=" goTo('home')" class="jiantou">
+        <i class="iconfont icon-jiantou2"></i>
       </div>
       <div class="inputSearch">
         <i class="iconfont icon-search"></i>
@@ -16,9 +16,6 @@ export default {
   methods: {
     goTo(name) {
       this.$router.push({ name: name });
-    },
-    prve() {
-      this.$router.go(-1);
     }
   }
 };
@@ -53,7 +50,6 @@ export default {
   background-color: #e4e5e7;
   border-radius: 10px;
   width: 80%;
-  /* padding-bottom: 10px; */
 }
 .top .inputSearch i {
   position: relative;
