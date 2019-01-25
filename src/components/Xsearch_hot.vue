@@ -3,7 +3,7 @@
     <div class="top">
       <div class="inputSearch">
         <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="搜索商品">
+        <input  type="text" placeholder="搜索商品">
       </div>
       <div @click="goTo('list')" class="jiantou">
         <span>取消</span>

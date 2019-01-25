@@ -7,6 +7,8 @@ import Home from '../pages/Home.vue'
 import Mine from '../pages/Mine.vue'
 import Cart from '../pages/Cart.vue'
 import Detail from '../pages/Details.vue'
+import Search from '../components/Xsearch_hot.vue'
+
 
 Vue.use(VueRouter)
 const routes = [
@@ -39,6 +41,11 @@ const routes = [
             }
         ]},
     // 详情页路由
+    {
+        path: '/search',
+        name: 'search',
+        component: Search
+    },
     {
         path: '/details',
         name: 'details',

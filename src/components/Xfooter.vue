@@ -16,7 +16,7 @@
         </a>
         <a  @click="goLink('cart','c')" :class="{'router-link-active':show=='c'}">
           <span class="bar-img relative">
-            <em class="shopcar_num">3</em>
+            <em class="shopcar_num" v-text="number"></em>
             <i class="icon iconfont icon-jiarugouwuche"></i>
           </span>
           <span :class="{'cart-index':true,'active':show=='c'}">购物车</span>
@@ -37,6 +37,16 @@ export default {
   data() {
     return {
       show:'a',
+      number:0,
+    }
+  },
+  created() {
+    let totalNum=this.$store.state.carList;
+    for(var i=0;i<totalNum.length;i++){
+      this.number+=totalNum[i].pronum;
+    };
+    if(totalNum.length==0){
+      this.number=0
     }
   },
   methods:{

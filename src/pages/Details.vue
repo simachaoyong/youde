@@ -134,10 +134,10 @@
           </div>
           <span>电话</span>
         </li>
-        <li>
+        <li @click="goLink('cart')">
           <div>
             <i class="iconfont icon-jiarugouwuche" style="font-size:24px;"></i>
-            <s>6</s>
+            <s v-text="number"></s>
           </div>
           <span>购物车</span>
         </li>
@@ -160,18 +160,18 @@
             <div class="choice_num">
               <p>购买数量:</p>
               <div class="cart-wrapper">
-                <div class="decrease">
+                <div class="decrease" @click="dec">
                   <i>-</i>
                 </div>
-                <input type="number" value="1" class="number">
-                <div class="add">
+                <input type="number" v-model="proNum" class="number">
+                <div class="add" @click="add">
                   <i>+</i>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="cont_bot">确定</div>
+        <div class="cont_bot" @click="qrBtn()">确定</div>
       </div>
     </div>
   </div>
@@ -184,10 +184,15 @@ export default {
     return {
       goodDetail: {},
       buystatus: false,
-      proId: this.$route.query.id
+      proId: this.$route.query.id,
+      proNum:1,
+      number:0
     };
   },
   methods: {
+    goLink(name){
+      this.$router.push({name});
+    },
     goTo() {
       this.$router.go(-1);
     },
@@ -200,7 +205,6 @@ export default {
         )
         .then(res => {
           this.goodDetail = res.data.data;
-          console.log(this.goodDetail);
           // 在这里执行那个轮播图
           Vue.nextTick(() => {
             var swiper = new Swiper(".swiper-container", {
@@ -220,11 +224,45 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    // 较少数量先
+    dec(){
+      if(this.proNum<=0){
+        return false;
+      }else{
+        this.proNum--;
+      }
+    },
+    // 增加数量
+    add(){
+      this.proNum++;
+    },
+    // 点击确认的时候，当点击确认的时候，将数据添加进去
+    qrBtn(){
+      let obj={
+        pronum:this.proNum,
+        goodDetail:this.goodDetail
+      }
+      this.$store.commit('cunPro',obj);
+    }
+  },
+  created() {
+    let totalNum=this.$store.state.carList;
+    for(var i=0;i<totalNum.length;i++){
+      this.number+=totalNum[i].pronum;
+    };
+    if(totalNum.length==0){
+      this.number=0
+    }
+  },
+  watch: {
+    proNum(){
+      this.proNum=parseInt(Math.abs(this.proNum));
     }
   },
   mounted() {
     this.renderBanner();
-  }
+  },
 };
 </script>
 <style scoped>

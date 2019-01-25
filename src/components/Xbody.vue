@@ -25,7 +25,7 @@
               class="goods-item"
               v-for="con in leaf.leaf"
               :key="con.id"
-              @click="goto('cart',con.id)"
+              @click="goto('details',con.id)"
             >
               <img :src="con.cover" class="goods-img">
               <p class="goods-name">{{con.name}}</p>
@@ -55,35 +55,27 @@ export default {
     goto(name, index) {
       this.$router.push({
         name: name,
-        // 路由传参
         query: { thridCategoryId: index }
       });
-    }
+    },
   },
   created() {
     this.$axios
       .get("https://m.youde.com/youde/f/app/s_10020/loadCategory")
       .then(res => {
-        //s
         let data = res.data.data;
         this.items = data;
-        // console.log(res.data.data);
-        // console.log(this.items);
-        // console.log(res.data.data[0]);
-        // console.log(res.data.data[0].leaf);
         var datas = [];
         for (let i = 0; i < this.items.length; i++) {
           var json = {};
           json["id"] = i;
           json["name"] = this.items[i].name;
           datas.push(json);
-          // console.log(json);
         }
-        // console.log(datas);
         this.Datas = datas;
       })
-      .catch(() => {
-        // Indicator.close();
+      .catch((err) => {
+        console.log(err);
       });
   },
   computed: {

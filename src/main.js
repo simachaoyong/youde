@@ -4,6 +4,7 @@ import router from './configs/router.js'
 // 引入媒体查询
 import './css/common.css';
 Vue.config.productionTip = false
+// 引入仓库store
 import store from './configs/store.js'
 // 引入字体图标
 import './assets/iconfont1/iconfont.css';
@@ -16,6 +17,7 @@ Vue.prototype.$axios=axios;
 new Vue({
   el:"#app",
   router,
+  // 挂载仓库
   store,
   render: h => h('router-view'),
 })

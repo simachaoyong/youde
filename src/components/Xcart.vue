@@ -1,10 +1,10 @@
 <template>
   <div class="menu">
     <ul class="ind_navi clearfix">
-      <li v-for="(item,index) of data" :key="index">
+      <li >
         <a>
           <i>
-            <img :src="JSON.parse(item.banner)[0].path">
+            <img src="">
           </i>{{item.name}}
         </a>
       </li>
@@ -13,6 +13,7 @@
 </template>
 <script>
 export default {
+	// 购物车拿token的值进行渲染
 	data() {
 		return {
 			data:[]
@@ -21,7 +22,7 @@ export default {
 	created() {
 		this.$axios.get('https://m.youde.com/youde/f/xcx/s_10020/advertising/list?type=4 ').then((res)=>{
 			this.data=res.data.data;
-		})
+		});
 	},
 };
 </script>

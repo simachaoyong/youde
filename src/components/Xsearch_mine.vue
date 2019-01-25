@@ -2,7 +2,7 @@
   <div class="msg">
     <div class="top">
       <div class="jiantou">
-        <i class="iconfont icon-jiantou-copy"></i>
+        <i class="iconfont icon-jiantou-copy" @click="goLink()"></i>
         <span style="color: rgb(88, 89, 89)">我的</span>
       </div>
     </div>
@@ -30,7 +30,13 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    goLink(){
+      this.$router.go(-1);
+    }
+  },
+};
 </script>
 <style scoped>
 .msg {
