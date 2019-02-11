@@ -8,7 +8,7 @@
     </div>
     <div class="product">
       <div class="listItemContainer" v-for="(item,index) of goodlist" :key="index">
-        <span class="del" @click="delBtn(index)">删除</span>
+        <span class="del">删除</span>
         <div class="checkBox">
           <input type="checkbox" v-model="selected" :value="index">
         </div>
@@ -16,15 +16,17 @@
           <img :src="item.goodDetail.thumbnail">
         </div>
         <div class="goodsRight">
-          <h3 class="goodsName">{{item.goodDetail.title}}
-          </h3>
+          <h3 class="goodsName">{{item.goodDetail.title}}</h3>
           <p class="goodsSize">40g</p>
           <div class="goodsRightBtm">
-            <div style="color:red;" class="goodsPrice">¥{{(item.goodDetail.minPrice/100).toFixed(2)}}</div>
+            <div
+              style="color:red;"
+              class="goodsPrice"
+            >¥{{(item.goodDetail.minPrice/100).toFixed(2)}}</div>
             <div class="goodsCount">
-              <span class="de"></span>
+              <span class="de" @click="dec(index)"></span>
               <em class="num" v-text="item.pronum"></em>
-              <span class="add"></span>
+              <span class="add" @click="add(index)"></span>
             </div>
           </div>
         </div>
@@ -47,62 +49,83 @@
 export default {
   data() {
     return {
-      goodlist:[],
+      goodlist: [],
       // 全选
       // qxuan:false,//如果qxuan为false，为空，如果是true就填满数组
-      jiesuan:false,
+      jiesuan: false,
       // 选中某个input的时候
-      selected:[],
-      heji:0,
-    }
+      selected: [],
+      heji: 0
+    };
   },
   computed: {
-    //返回全选的值
-    qxuan:{
-      get(){
-        if(this.selected.length==this.goodlist.length){
+    //全选按钮
+    qxuan: {
+      get() {
+        this.totalHeji();
+        if (this.goodlist.length == 0) {
+          return false;
+        }
+        if (this.selected.length == this.goodlist.length) {
           return true;
-        }else{
+        } else {
           return false;
         }
       },
-      // 当点击全选时执行的函数
-      set(checked){
-        if(checked){
-          this.selected=this.goodlist.map((item,index)=>index);
-        }else{
-          this.selected=[];
+      // 必须要用到双向数据绑定
+      set(checked) {
+        if (checked) {
+          this.selected = this.goodlist.map((item, idx) => {
+            return idx;
+          });
+        } else {
+          this.selected = [];
         }
       }
     }
   },
   watch: {
-    selected(){
-      if(this.selected.length>0){
-        this.heji=0;
-        // 这里是用于判断有多少个框被选中了
-        for(var i=0;i<this.selected.length;i++){
-          console.log(this.goodlist[this.selected[i]]);
-          this.heji+=(this.goodlist[this.selected[i]].goodDetail.minPrice*this.goodlist[this.selected[i]].pronum);
-        }
-        this.heji=(this.heji/100).toFixed(2);
-        this.jiesuan=true;
-      }else{
-        this.jiesuan=false;
+    selected() {
+      if (this.selected.length > 0) {
+        this.jiesuan = true;
+      } else {
+        this.jiesuan = false;
       }
-    },
+    }
   },
   methods: {
-    //点击删除按钮的时候
-    delBtn(index){
-      this.goodlist.splice(index,1);
+    // 将价格渲染到那个上面，每次的选择时候都需要一次渲染
+    totalHeji() {
+      this.heji = 0;
+      if (this.selected.length == 0) {
+        this.heji = 0;
+      } else {
+        for (var i = 0; i < this.selected.length; i++) {
+          this.heji +=
+            this.goodlist[this.selected[i]].pronum *
+            this.goodlist[this.selected[i]].goodDetail.minPrice;
+        }
+        this.heji = (this.heji / 100).toFixed(2);
+      }
+    },
+    // 当点击删除按钮时，删除那里有点点问题
+    delBtn(index) {
+      this.$store.commit("delPro", index);
+    },
+    add(index) {
+      //当点击添加之后，就变成新的数组了
+      this.$store.commit("addPro", index);
+      console.log(this.$store.state.carList)
+    },
+    dec(index) {
+      this.$store.commit("decPro", index);
     }
   },
   created() {
     // 这里能拿到商品的详细信息了
-    this.goodlist=this.$store.state.carList;
+    this.goodlist = this.$store.state.carList;
     // console.log(this.$store.state.carList);
-
+    // console.log(this.goodlist);
   },
 };
 </script>
@@ -141,8 +164,8 @@ export default {
   text-align: center;
 }
 .msg .product {
-  width:100%;
-  overflow:hidden;
+  width: 100%;
+  overflow: hidden;
   margin-top: 50px;
   margin-bottom: 100px;
 }
@@ -150,47 +173,46 @@ export default {
   border-bottom: 1px solid #e4e5e7;
   height: 100px;
   width: 100%;
-  display:flex;
-  padding:10px;
-  overflow:hidden;
-  position:relative;
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
 }
-.checkBox{
-  display:flex;
-  height:100%;
+.checkBox {
+  display: flex;
+  height: 100%;
   align-items: center;
 }
-.checkBox input{
-  width:1.125rem;
-  height:1.125rem;
+.checkBox input {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 .msg .listItemContainer .goodsImg {
-  margin-left:10px;
-  display:flex;
-  align-items:center;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
 }
 .msg .listItemContainer .goodsImg img {
-  width:4.125rem;
+  width: 4.125rem;
 }
-.msg .listItemContainer .goodsRight{
-overflow: hidden;
+.msg .listItemContainer .goodsRight {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 12px;
-  line-height:25px;
-  margin-right:20px;
+  line-height: 25px;
+  margin-right: 20px;
   flex: 1;
 }
-.msg .listItemContainer .goodsRight .goodsName{
-  padding-right:1.25rem;
-  
+.msg .listItemContainer .goodsRight .goodsName {
+  padding-right: 1.25rem;
 }
 .msg .listItemContainer .del {
-  position:absolute;
-  right:10px;
-  top:1.125rem;
+  position: absolute;
+  right: 10px;
+  top: 1.125rem;
   color: red;
-  font-size:.875rem;
+  font-size: 0.875rem;
 }
 .msg .listItemContainer .goodsRight .goodsRightBtm {
   display: flex;
@@ -288,14 +310,14 @@ overflow: hidden;
   width: 100px;
   text-align: center;
   color: #fff;
-  font-size:1rem;
-  background-color:#ccc;
+  font-size: 1rem;
+  background-color: #ccc;
 }
-.msg .total p.jiesuan{
-  background-color:#36c;
+.msg .total p.jiesuan {
+  background-color: #36c;
 }
-.fangkuai input{
-  width:1.125rem;
-  height:1.125rem;
+.fangkuai input {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 </style>
